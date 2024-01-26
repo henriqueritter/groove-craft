@@ -1,0 +1,22 @@
+* {
+    background-color: #3C3C3C;
+    color: aliceblue;
+}
+
+#loop-pads {
+    background-color: #4C4C4C;
+    min-width: 100wh;
+    min-height: calc(100vh*0.9);
+}
+
+button {
+    height: 2em;
+}
+
+.activated {
+    background-color: cadetblue;
+}
+
+.deactivated {
+    background-color: aquamarine;
+}
