@@ -20,9 +20,10 @@ const playItems = [
 ];
 
 const scheduledBeats = {
-    "T1.2": ["snare"],
+    "T1.1": ["snare"],
     "T1.3": ["snare"],
-
+    "T1.4": ["snare"],
+    "T2.2": ["snare"]
 }
 
 
@@ -77,7 +78,7 @@ function play() {
         scheduledBeats[tempo].forEach(scheduled => {
             toggleItem(scheduled, tempo);
         });
-    }, bpmInMilliseconds);
+    }, bpmInMilliseconds / tempoMeasure);
 }
 
 function stop() {
