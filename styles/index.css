@@ -1,4 +1,4 @@
-* {
+body {
     background-color: #3C3C3C;
     color: aliceblue;
 }
@@ -10,13 +10,20 @@
 }
 
 button {
-    height: 2em;
+    background-color: #4C4C4C;
+    height: 4em;
+    width: 2em;
+}
+
+#util-buttons button {
+    width: 4em;
+    border-radius: 25%;
 }
 
 .activated {
-    background-color: cadetblue;
+    background-color: aquamarine;
 }
 
 .deactivated {
-    background-color: aquamarine;
+    background-color: cadetblue;
 }

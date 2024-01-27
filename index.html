@@ -18,19 +18,17 @@
         <button id="beat-1.3" class="deactivated"></button>
         <button id="beat-1.4" class="deactivated"></button>
     </div>
-    <div id="beat">
-        <button id="beat-1.1" class="deactivated"></button>
-        <button id="beat-1.2" class="deactivated"></button>
-        <button id="beat-1.3" class="deactivated"></button>
-        <button id="beat-1.4" class="deactivated"></button>
-    </div>
 </div>
 
-<button onclick="increaseBpm()">+</button>
-<button onclick="decreaseBpm()">-</button>
+<div id="util-buttons">
+    <button onclick="increaseBpm()">+</button>
+    <button onclick="decreaseBpm()">-</button>
 
-<button onclick="play()">Play</button>
-<button onclick="stop()">Stop</button>
+    <button onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button>
+</div>
+
+<span id="actualBpm">60</span>
 
 </body>
 
