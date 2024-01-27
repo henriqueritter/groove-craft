@@ -4,34 +4,55 @@ var bpmInMilliseconds = 1000;
 var intervalId = 1;
 var isPlaying = false;
 
+const tempoQuantity = 2;
+const tempoMeasure = 4;
+
+var actualTempo = 1;
+var actualTempoMeasure = 0;
+
+const tempoInCompass = `T${actualTempo}.${actualTempoMeasure}`;
+
+const toggledItems = {}
+
+const playItems = [
+    { name: "kick", isEveryBeat: false },
+    { name: "beat", isEveryBeat: true }
+];
 
 
-var tempo = 1;
-var tempoMark = 1;
+function iterateOverTempo() {
 
-const initialBeat = "beat-1.1";
+    actualTempoMeasure++;
 
-var lastBeat = initialBeat;
-
-function printTempo() {
-    if (lastBeat) {
-        document.getElementById(lastBeat).className = "deactivated";
+    if (actualTempoMeasure > tempoMeasure) {
+        actualTempo++;
+        actualTempoMeasure = 1;
     }
 
-    lastBeat = `beat-${tempo}.${tempoMark}`;
-    document.getElementById(lastBeat).className = "activated";
-
-    tempoMark++;
-    if (tempoMark > 4) {
-        //tempo++;
-        tempoMark = 1;
-    }
-    if (tempo > 4) {
-        tempo = 1;
+    if (actualTempo > tempoQuantity) {
+        actualTempo = 1;
     }
 
-    return false;
+    return `T${actualTempo}.${actualTempoMeasure}`; //T1.1
 }
+
+function toggledItemOn(item, tempo) {
+    document.getElementById(`${item}-${tempo}`).className = "activated";
+
+    toggledItems[item] = tempo;
+}
+
+function toggleItemOff(item) {
+    if (toggledItems[item]) document.getElementById(`${item}-${toggledItems[item]}`).className = "deactivated";
+}
+
+function toggleItem(item, tempo, isEveryBeat) {
+    var toggledItemTempo = isEveryBeat ? `${tempo}` : `T${actualTempo}.1`;
+
+    toggleItemOff(item);
+    toggledItemOn(item, toggledItemTempo);
+}
+
 
 
 function play() {
@@ -39,7 +60,11 @@ function play() {
     isPlaying = true;
     console.info("Lets Rick n Roll!");
 
-    intervalId = setInterval(printTempo, bpmInMilliseconds);
+    intervalId = setInterval(() => {
+        const tempo = iterateOverTempo();
+        playItems.forEach(item => toggleItem(item.name, tempo, item.isEveryBeat))
+
+    }, bpmInMilliseconds);
 }
 
 function stop() {
