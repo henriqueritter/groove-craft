@@ -19,9 +19,14 @@ const playItems = [
     { name: "beat", isEveryBeat: true }
 ];
 
+const scheduledBeats = {
+    "T1.2": ["snare"],
+    "T1.3": ["snare"],
+
+}
+
 
 function iterateOverTempo() {
-
     actualTempoMeasure++;
 
     if (actualTempoMeasure > tempoMeasure) {
@@ -46,30 +51,40 @@ function toggleItemOff(item) {
     if (toggledItems[item]) document.getElementById(`${item}-${toggledItems[item]}`).className = "deactivated";
 }
 
-function toggleItem(item, tempo, isEveryBeat) {
+function toggleItem(item, tempo, isEveryBeat = true) {
     var toggledItemTempo = isEveryBeat ? `${tempo}` : `T${actualTempo}.1`;
 
     toggleItemOff(item);
     toggledItemOn(item, toggledItemTempo);
 }
 
-
-
 function play() {
     if (isPlaying) return;
+
     isPlaying = true;
+
     console.info("Lets Rick n Roll!");
 
     intervalId = setInterval(() => {
         const tempo = iterateOverTempo();
-        playItems.forEach(item => toggleItem(item.name, tempo, item.isEveryBeat))
+        if (!scheduledBeats[tempo]) scheduledBeats[tempo] = [];
 
+        playItems.forEach(item =>
+            toggleItem(item.name, tempo, item.isEveryBeat)
+
+        )
+
+        scheduledBeats[tempo].forEach(scheduled => {
+            toggleItem(scheduled, tempo);
+        });
     }, bpmInMilliseconds);
 }
 
 function stop() {
     if (!isPlaying) return;
     isPlaying = false;
+
+    console.log(scheduledBeats);
 
     console.info("Pq parou? parou pq?");
     clearInterval(intervalId);
