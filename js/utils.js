@@ -9,6 +9,7 @@ function play() {
     if (isPlaying) return;
 
     isPlaying = true;
+    isPaused = false;
 
     console.info("Lets Rick n Roll!");
 
@@ -25,6 +26,7 @@ function play() {
 function pause() {
     if (!isPlaying) return;
     isPlaying = false;
+    isPaused = true;
 
     console.log(scheduledBeats);
 
@@ -33,7 +35,7 @@ function pause() {
 }
 
 function stop() {
-    if (!isPlaying) return;
+    if ((isPlaying = true) && (isPaused = false)) return;
     isPlaying = false;
 
     actualTempo = 1;
@@ -41,4 +43,10 @@ function stop() {
 
     console.info("Pq parou? parou pq?");
     clearInterval(intervalId);
+
+    for (var playedElement in playedElements) {
+        if (playedElement) {
+            toggleItemClassAtTempo(playedElement, playedElements[playedElement], false);
+        }
+    }
 }

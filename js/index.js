@@ -3,6 +3,7 @@ var bpmInMilliseconds = 1000;
 
 var intervalId = 1;
 var isPlaying = false;
+var isPaused = false;
 
 const tempoQuantity = 2;
 const tempoMeasure = 4;
