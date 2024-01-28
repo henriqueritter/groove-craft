@@ -52,34 +52,6 @@ function iterateOverTempo() {
 }
 
 
-
-function play() {
-    if (isPlaying) return;
-
-    isPlaying = true;
-
-    console.info("Lets Rick n Roll!");
-
-    intervalId = setInterval(() => {
-        const tempo = iterateOverTempo();
-        if (!scheduledBeats[tempo]) scheduledBeats[tempo] = [];
-        scheduledBeats[tempo].forEach(scheduledItem => {
-            playScheduledElement(scheduledItem, tempo);
-        });
-
-    }, bpmInMilliseconds / tempoMeasure);
-}
-
-function pause() {
-    if (!isPlaying) return;
-    isPlaying = false;
-
-    console.log(scheduledBeats);
-
-    console.info("Pq parou? parou pq?");
-    clearInterval(intervalId);
-}
-
 function increaseBpm() {
     if (bpm >= 300) return;
 
