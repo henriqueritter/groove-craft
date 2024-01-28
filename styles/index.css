@@ -27,3 +27,11 @@ button {
 .deactivated {
     background-color: cadetblue;
 }
+
+#kick .activated {
+    background-color: #1000c0;
+}
+
+#kick .deactivated {
+    background-color: #4b1bdb;
+}

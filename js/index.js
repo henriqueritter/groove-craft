@@ -14,16 +14,25 @@ const tempoInCompass = `T${actualTempo}.${actualTempoMeasure}`;
 
 const toggledItems = {}
 
+//este só vai servir para o metronomo mesmo
 const playItems = [
     { name: "kick", isEveryBeat: false },
-    { name: "beat", isEveryBeat: true }
+    { name: "beat", isEveryBeat: true },
 ];
 
+const playedElements = {
+
+}
+
 const scheduledBeats = {
-    "T1.1": ["snare"],
-    "T1.3": ["snare"],
-    "T1.4": ["snare"],
-    "T2.2": ["snare"]
+    "T1.1": ["beat"],
+    "T1.2": ["beat"],
+    "T1.3": ["beat"],
+    "T1.4": ["beat"],
+    "T2.1": ["beat"],
+    "T2.2": ["beat"],
+    "T2.3": ["beat"],
+    "T2.4": ["beat"]
 }
 
 
@@ -42,22 +51,7 @@ function iterateOverTempo() {
     return `T${actualTempo}.${actualTempoMeasure}`; //T1.1
 }
 
-function toggledItemOn(item, tempo) {
-    document.getElementById(`${item}-${tempo}`).className = "activated";
 
-    toggledItems[item] = tempo;
-}
-
-function toggleItemOff(item) {
-    if (toggledItems[item]) document.getElementById(`${item}-${toggledItems[item]}`).className = "deactivated";
-}
-
-function toggleItem(item, tempo, isEveryBeat = true) {
-    var toggledItemTempo = isEveryBeat ? `${tempo}` : `T${actualTempo}.1`;
-
-    toggleItemOff(item);
-    toggledItemOn(item, toggledItemTempo);
-}
 
 function play() {
     if (isPlaying) return;
@@ -69,19 +63,14 @@ function play() {
     intervalId = setInterval(() => {
         const tempo = iterateOverTempo();
         if (!scheduledBeats[tempo]) scheduledBeats[tempo] = [];
-
-        playItems.forEach(item =>
-            toggleItem(item.name, tempo, item.isEveryBeat)
-
-        )
-
-        scheduledBeats[tempo].forEach(scheduled => {
-            toggleItem(scheduled, tempo);
+        scheduledBeats[tempo].forEach(scheduledItem => {
+            playScheduledElement(scheduledItem, tempo);
         });
+
     }, bpmInMilliseconds / tempoMeasure);
 }
 
-function stop() {
+function pause() {
     if (!isPlaying) return;
     isPlaying = false;
 
@@ -105,4 +94,43 @@ function decreaseBpm() {
     bpm = bpm - 1;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
     document.getElementById("actualBpm").textContent = bpm;
+}
+
+
+function playScheduledElement(element, tempo) {
+    if (playedElements[element]) {
+        toggleItemClassAtTempo(element, playedElements[element], false);
+    }
+
+    toggleItemClassAtTempo(element, tempo, true);
+
+    playedElements[element] = tempo;
+}
+
+function toggleItemClassAtTempo(item, tempo, isActivated) {
+    if (isActivated) {
+        document.getElementById(`${item}-${tempo}`).className = "activated";
+        return;
+    }
+
+    document.getElementById(`${item}-${tempo}`).className = "deactivated";
+}
+
+//-----------
+function toggleElement(element) {
+    const splitedElement = element.id.split("-");
+
+    const itemIndex = scheduledBeats[splitedElement[1]].indexOf(splitedElement[0]);
+
+    if (itemIndex > -1) {
+        console.log(itemIndex);
+        scheduledBeats[splitedElement[1]].splice(itemIndex, 1);
+        toggleItemClassAtTempo(splitedElement[0], splitedElement[1], false);
+        return;
+    }
+
+    scheduledBeats[splitedElement[1]].push(splitedElement[0]);
+
+    toggleItemClassAtTempo(splitedElement[0], splitedElement[1], true);
+    return;
 }
