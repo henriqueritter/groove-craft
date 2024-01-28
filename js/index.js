@@ -53,11 +53,16 @@ function iterateOverTempo() {
 
 
 function increaseBpm() {
+
     if (bpm >= 300) return;
 
     bpm = bpm + 1;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
     document.getElementById("actualBpm").textContent = bpm;
+
+    if (!isPlaying) return;
+    pause();
+    play();
 }
 
 function decreaseBpm() {
@@ -66,6 +71,10 @@ function decreaseBpm() {
     bpm = bpm - 1;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
     document.getElementById("actualBpm").textContent = bpm;
+
+    if (!isPlaying) return;
+    pause();
+    play();
 }
 
 

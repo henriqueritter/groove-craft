@@ -43,21 +43,21 @@
         <button id="snare-T1.3" class="deactivated" onclick="toggleElement(this)"></button>
         <button id="snare-T1.4" class="deactivated" onclick="toggleElement(this)"></button>
 
-        <button id="snare-T2.1" class="deactivated"></button>
-        <button id="snare-T2.2" class="deactivated"></button>
-        <button id="snare-T2.3" class="deactivated"></button>
-        <button id="snare-T2.4" class="deactivated"></button>
+        <button id="snare-T2.1" class="deactivated" onclick="toggleElement(this)"></button>
+        <button id="snare-T2.2" class="deactivated" onclick="toggleElement(this)"></button>
+        <button id="snare-T2.3" class="deactivated" onclick="toggleElement(this)"></button>
+        <button id="snare-T2.4" class="deactivated" onclick="toggleElement(this)"></button>
     </div>
 </div>
 
 <div id="util-buttons">
-    <button onclick="increaseBpm()">+</button>
-    <button onclick="decreaseBpm()">-</button>
-
     <button onclick="play()">Play</button>
     <button onclick="pause()">Pause</button>
     <button onclick="stop()">Stop</button>
+
+    <button onclick="increaseBpm()">+</button>
     <label>BPM: </label><span id="actualBpm">60</span>
+    <button onclick="decreaseBpm()">-</button>
 </div>
 
 
