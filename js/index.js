@@ -33,8 +33,13 @@ const scheduledBeats = {
 }
 
 
+
+
+
+
 function iterateOverTempo() {
     actualTempoMeasure++;
+
 
     if (actualTempoMeasure > tempoMeasure) {
         actualTempo++;
@@ -86,9 +91,13 @@ function decreaseBpm() {
 
 function playScheduledElement(element, tempo) {
 
-
     if (playedElements[element]) {
         toggleItemClassAtTempo(element, playedElements[element], false);
+        if (element !== "beat") {
+            const audio = new Audio(`assets/${element}.wav`);
+            audio.load();
+            audio.play();
+        }
     }
     console.log(element, tempo);
     toggleItemClassAtTempo(element, tempo, true);
@@ -97,6 +106,7 @@ function playScheduledElement(element, tempo) {
 }
 
 function toggleItemClassAtTempo(item, tempo, isActivated) {
+    console.log(item);
     if (isActivated) {
         document.getElementById(`${item}-${lastPlayedTempo}`).className = "deactivated";
         document.getElementById(`${item}-${tempo}`).className = "activated";
