@@ -35,3 +35,7 @@ button {
 #kick .deactivated {
     background-color: #4b1bdb;
 }
+
+button[name="first"] {
+    opacity: 60%;
+}

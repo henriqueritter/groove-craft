@@ -22,18 +22,14 @@ const playItems = [
 ];
 
 const playedElements = {
-
+    //"beat"
 }
 
+//armazena o estado do tempo para saber quando desligar uma batida
+let lastPlayedTempo = "T1.1";
+
 const scheduledBeats = {
-    "T1.1": ["beat"],
-    "T1.2": ["beat"],
-    "T1.3": ["beat"],
-    "T1.4": ["beat"],
-    "T2.1": ["beat"],
-    "T2.2": ["beat"],
-    "T2.3": ["beat"],
-    "T2.4": ["beat"]
+    //"T1.1": ["beat"],
 }
 
 
@@ -50,6 +46,15 @@ function iterateOverTempo() {
     }
 
     return `T${actualTempo}.${actualTempoMeasure}`; //T1.1
+}
+
+function initializeScheduledBeats() {
+    for (let i = 0; i < tempoQuantity; i++) {
+        for (let j = 0; j < tempoMeasure; j++) {
+            const tempo = iterateOverTempo();
+            if (!scheduledBeats[tempo]) scheduledBeats[tempo] = ["beat"];
+        }
+    }
 }
 
 
@@ -80,10 +85,12 @@ function decreaseBpm() {
 
 
 function playScheduledElement(element, tempo) {
+
+
     if (playedElements[element]) {
         toggleItemClassAtTempo(element, playedElements[element], false);
     }
-
+    console.log(element, tempo);
     toggleItemClassAtTempo(element, tempo, true);
 
     playedElements[element] = tempo;
@@ -91,6 +98,7 @@ function playScheduledElement(element, tempo) {
 
 function toggleItemClassAtTempo(item, tempo, isActivated) {
     if (isActivated) {
+        document.getElementById(`${item}-${lastPlayedTempo}`).className = "deactivated";
         document.getElementById(`${item}-${tempo}`).className = "activated";
         return;
     }
@@ -116,3 +124,6 @@ function toggleElement(element) {
     toggleItemClassAtTempo(splitedElement[0], splitedElement[1], true);
     return;
 }
+
+
+initializeScheduledBeats();

@@ -15,11 +15,16 @@ function play() {
 
     intervalId = setInterval(() => {
         const tempo = iterateOverTempo();
-        if (!scheduledBeats[tempo]) scheduledBeats[tempo] = [];
+        //if (!scheduledBeats[tempo]) scheduledBeats[tempo] = [];
         scheduledBeats[tempo].forEach(scheduledItem => {
             playScheduledElement(scheduledItem, tempo);
         });
 
+        scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
+            toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
+        });
+
+        lastPlayedTempo = tempo;
     }, bpmInMilliseconds / tempoMeasure);
 }
 
