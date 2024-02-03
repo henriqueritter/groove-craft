@@ -20,9 +20,13 @@ function play() {
             playScheduledElement(scheduledItem, tempo);
         });
 
-        scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
-            toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
-        });
+
+        if (lastPlayedTempo) {
+            scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
+                toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
+            });
+        }
+
 
         lastPlayedTempo = tempo;
     }, bpmInMilliseconds / tempoMeasure);

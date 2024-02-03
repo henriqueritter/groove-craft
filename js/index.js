@@ -26,15 +26,11 @@ const playedElements = {
 }
 
 //armazena o estado do tempo para saber quando desligar uma batida
-let lastPlayedTempo = "T1.1";
+let lastPlayedTempo = "";
 
 const scheduledBeats = {
     //"T1.1": ["beat"],
 }
-
-
-
-
 
 
 function iterateOverTempo() {
@@ -108,7 +104,7 @@ function playScheduledElement(element, tempo) {
 function toggleItemClassAtTempo(item, tempo, isActivated) {
     console.log(item);
     if (isActivated) {
-        document.getElementById(`${item}-${lastPlayedTempo}`).className = "deactivated";
+        if (lastPlayedTempo) document.getElementById(`${item}-${lastPlayedTempo}`).className = "deactivated";
         document.getElementById(`${item}-${tempo}`).className = "activated";
         return;
     }
