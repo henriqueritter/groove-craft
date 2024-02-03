@@ -1,7 +1,33 @@
 var bpm = 60;
 var bpmInMilliseconds = 1000;
+
 const minimumBpm = 1;
 const maximuBpm = 400;
+
+window.onload = function() {
+    try {
+        var url_string = (window.location.href).toLowerCase();
+        var url = new URL(url_string);
+        var queryParamBpm = Number(url.searchParams.get("bpm"));
+        console.log(queryParamBpm);
+        if (!queryParamBpm) {
+            console.error("Invalid value on 'bpm' Query param");
+            return;
+        }
+
+        if (!isAValidBpm(queryParamBpm)) {
+            console.error(`bpm should be between ${minimumBpm} and ${maximuBpm}`);
+            return;
+        }
+
+        bpm = Number(queryParamBpm);
+        document.getElementById("actualBpm").value = bpm;
+        bpmInMilliseconds = parseBpmToMilliseconds(bpm);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 
 var intervalId = 1;
 var isPlaying = false;
@@ -10,13 +36,6 @@ var isPaused = false;
 var actualTempo = 1;
 var actualTempoMeasure = 0;
 
-const elements = ["beat", "kick", "snare", "hithat"];
-
-const playedElements = {
-    //"beat"
-}
-
-//armazena o estado do tempo para saber quando desligar uma batida
 let lastPlayedTempo = "";
 
 const scheduledBeats = {
@@ -42,7 +61,6 @@ function iterateOverTempo() {
 
 
 function initializeScheduledBeats() {
-
     for (let i = 0; i < tempoQuantity; i++) {
         for (let j = 0; j < tempoMeasure; j++) {
             const tempo = iterateOverTempo();
@@ -52,13 +70,20 @@ function initializeScheduledBeats() {
 }
 
 
+function isAValidBpm(bpm) {
+    if (bpm < minimumBpm || bpm > maximuBpm) {
+        return false;
+    }
+    return true;
+}
+
+
 function increaseBpm(amount) {
     if (bpm >= maximuBpm) return;
 
     bpm = bpm + amount;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
     document.getElementById("actualBpm").value = bpm;
-
 
     if (!isPlaying) return;
     pause();
@@ -77,14 +102,15 @@ function decreaseBpm(amount) {
     play();
 }
 
-function updateBpm(element) {
+function updateBpmFromTextElement(element) {
     const newBpm = Number(element.value);
     if (typeof newBpm !== "number") {
         console.error("BPM is NaN");
         return;
     }
-    if (newBpm < minimumBpm || newBpm > maximuBpm) {
-        console.error("BPM should be between 1 and 400");
+
+    if (!isAValidBpm(newBpm)) {
+        console.error(`bpm should be between ${minimumBpm} and ${maximuBpm}`);
         return;
     }
 
@@ -96,17 +122,18 @@ function updateBpm(element) {
     play();
 }
 
+function playAudioOfElement(elementName) {
+    const audio = new Audio(`assets/${elementName}.wav`);
+    audio.load();
+    audio.play();
+}
 
 function playScheduledElement(element, tempo) {
     if (element !== "beat") {
-        const audio = new Audio(`assets/${element}.wav`);
-        audio.load();
-        audio.play();
+        playAudioOfElement(element);
     }
 
     toggleItemClassAtTempo(element, tempo, true);
-
-    playedElements[element] = tempo;
 }
 
 function toggleItemClassAtTempo(item, tempo, isActivated) {
@@ -119,15 +146,12 @@ function toggleItemClassAtTempo(item, tempo, isActivated) {
     document.getElementById(`${item}-${tempo}`).className = "deactivated";
 }
 
-//-----------
 function scheduleElement(element) {
     const splitedElementId = element.id.split("-");
 
     const itemIndex = scheduledBeats[splitedElementId[1]].indexOf(splitedElementId[0]);
 
     if (itemIndex > -1) {
-        //scheduledBeats[splitedElementId[1]].splice(itemIndex, 1);
-        //toggleItemClassAtTempo(splitedElementId[0], splitedElementId[1], false);
         unscheduleElement(splitedElementId[0], splitedElementId[1], itemIndex);
         document.getElementById(`${splitedElementId[0]}-${splitedElementId[1]}`).firstChild.className = "statusOff";
         return;
@@ -135,7 +159,6 @@ function scheduleElement(element) {
 
     scheduledBeats[splitedElementId[1]].push(splitedElementId[0]);
 
-    /////toggleItemClassAtTempo(splitedElementId[0], splitedElementId[1], true);
     document.getElementById(`${splitedElementId[0]}-${splitedElementId[1]}`).firstChild.className = "statusOn";
     return;
 }

@@ -44,6 +44,7 @@ function pause() {
 
 function stop() {
     if ((isPlaying = true) && (isPaused = false)) return;
+
     isPlaying = false;
 
     actualTempo = 1;
@@ -52,9 +53,10 @@ function stop() {
     console.info("Pq parou? parou pq?");
     clearInterval(intervalId);
 
-    for (var playedElement in playedElements) {
-        if (playedElement) {
-            toggleItemClassAtTempo(playedElement, playedElements[playedElement], false);
-        }
+
+    if (lastPlayedTempo) {
+        scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
+            toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
+        });
     }
 }
