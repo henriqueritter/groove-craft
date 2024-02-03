@@ -1,5 +1,7 @@
 var bpm = 60;
 var bpmInMilliseconds = 1000;
+const minimumBpm = 1;
+const maximuBpm = 400;
 
 var intervalId = 1;
 var isPlaying = false;
@@ -38,7 +40,9 @@ function iterateOverTempo() {
     return `T${actualTempo}.${actualTempoMeasure}`; //T1.1
 }
 
+
 function initializeScheduledBeats() {
+
     for (let i = 0; i < tempoQuantity; i++) {
         for (let j = 0; j < tempoMeasure; j++) {
             const tempo = iterateOverTempo();
@@ -48,25 +52,44 @@ function initializeScheduledBeats() {
 }
 
 
-function increaseBpm() {
+function increaseBpm(amount) {
+    if (bpm >= maximuBpm) return;
 
-    if (bpm >= 300) return;
-
-    bpm = bpm + 1;
+    bpm = bpm + amount;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
-    document.getElementById("actualBpm").textContent = bpm;
+    document.getElementById("actualBpm").value = bpm;
+
 
     if (!isPlaying) return;
     pause();
     play();
 }
 
-function decreaseBpm() {
-    if (bpm <= 1) return;
+function decreaseBpm(amount) {
+    if (bpm <= minimumBpm) return;
 
-    bpm = bpm - 1;
+    bpm = bpm - amount;
     bpmInMilliseconds = parseBpmToMilliseconds(bpm);
-    document.getElementById("actualBpm").textContent = bpm;
+    document.getElementById("actualBpm").value = bpm;
+
+    if (!isPlaying) return;
+    pause();
+    play();
+}
+
+function updateBpm(element) {
+    const newBpm = Number(element.value);
+    if (typeof newBpm !== "number") {
+        console.error("BPM is NaN");
+        return;
+    }
+    if (newBpm < minimumBpm || newBpm > maximuBpm) {
+        console.error("BPM should be between 1 and 400");
+        return;
+    }
+
+    bpm = newBpm;
+    bpmInMilliseconds = parseBpmToMilliseconds(bpm);
 
     if (!isPlaying) return;
     pause();

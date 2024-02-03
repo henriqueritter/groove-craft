@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groove Craft - Craft Amazing Drum Loops</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <script src="js/utils.js"></script>
     <script src="js/index.js"></script>
     <link rel="stylesheet" href="styles/index.css">
@@ -181,8 +184,10 @@
         <button onclick="pause()">Pause</button>
         <button onclick="stop()">Stop</button>
 
-        <button onclick="increaseBpm()">+</button> BPM: <input id="actualBpm" type="number" value="70" min="1" max="400" onchange="updateBpm(this)" />
-        <button onclick="decreaseBpm()">-</button>
+        <button onclick="decreaseBpm(5)">- 5</button>
+        <span>BPM: </span> <input id="actualBpm" value=60 type="number" min="1" max="400" onchange="updateBpm(this)" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
+        <button onclick="increaseBpm(5)">+ 5</button>
+
     </div>
 
 

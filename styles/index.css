@@ -1,3 +1,7 @@
+* {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
 body {
     background-color: #3C3C3C;
     color: aliceblue;
@@ -144,4 +148,7 @@ button[name="first"] {
     width: fit-content;
     margin: 0.5em;
     text-decoration: none;
+    font-size: 1em;
+    color: #cfcfcf;
+    font-weight: bold;
 }
