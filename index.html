@@ -11,70 +11,179 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 
-<body></body>
-<div id="loop-pads">
-    Beat
-    <div id="beat-T1.0" class="deactivated"></div>
-    <div id="beat">
-        <button name="first" id="beat-T1.1" class="deactivated"></button>
-        <button id="beat-T1.2" class="deactivated"></button>
-        <button id="beat-T1.3" class="deactivated"></button>
-        <button id="beat-T1.4" class="deactivated"></button>
-
-        <button name="first" id="beat-T2.1" class="deactivated"></button>
-        <button id="beat-T2.2" class="deactivated"></button>
-        <button id="beat-T2.3" class="deactivated"></button>
-        <button id="beat-T2.4" class="deactivated"></button>
+<body>
+    <div id="title">
+        <img src="favicon.png" alt="">
+        <strong>Groove Craft</strong>
     </div>
-    Kick
-    <div id="kick-T1.0" class="deactivated"></div>
-    <div id="kick">
-        <button name="first" id="kick-T1.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T1.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T1.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T1.4" class="deactivated" onclick="toggleElement(this)"></button>
+    <div id="loop-pads">
+        Beat
+        <div id="beat">
+            <button name="first" id="beat-T1.1" class="deactivated"></button>
+            <button id="beat-T1.2" class="deactivated"></button>
+            <button id="beat-T1.3" class="deactivated"></button>
+            <button id="beat-T1.4" class="deactivated"></button>
 
-        <button name="first" id="kick-T2.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T2.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T2.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="kick-T2.4" class="deactivated" onclick="toggleElement(this)"></button>
+            <button name="first" id="beat-T2.1" class="deactivated"></button>
+            <button id="beat-T2.2" class="deactivated"></button>
+            <button id="beat-T2.3" class="deactivated"></button>
+            <button id="beat-T2.4" class="deactivated"></button>
+
+            <button name="first" id="beat-T3.1" class="deactivated"></button>
+            <button id="beat-T3.2" class="deactivated"></button>
+            <button id="beat-T3.3" class="deactivated"></button>
+            <button id="beat-T3.4" class="deactivated"></button>
+
+            <button name="first" id="beat-T4.1" class="deactivated"></button>
+            <button id="beat-T4.2" class="deactivated"></button>
+            <button id="beat-T4.3" class="deactivated"></button>
+            <button id="beat-T4.4" class="deactivated"></button>
+        </div>
+        Kick
+        <div id="kick">
+            <button name="first" id="kick-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="kick-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="kick-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="kick-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="kick-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
+        Snare
+        <div id="snare">
+            <button name="first" id="snare-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="snare-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="snare-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="snare-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="snare-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
+
+        Clap
+        <div id="clap">
+            <button name="first" id="clap-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="clap-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="clap-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="clap-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="clap-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
+
+        Closed Hi-Hat
+        <div id="closedHihat">
+            <button name="first" id="closedHihat-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="closedHihat-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="closedHihat-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="closedHihat-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="closedHihat-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
+        Open Hi-Hat
+        <div id="openHihat">
+            <button name="first" id="openHihat-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="openHihat-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="openHihat-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="openHihat-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="openHihat-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
+
+        Crash
+        <div id="crash">
+            <button name="first" id="crash-T1.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T1.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T1.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T1.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="crash-T2.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T2.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T2.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T2.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="crash-T3.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T3.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T3.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T3.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+
+            <button name="first" id="crash-T4.1" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T4.2" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T4.3" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+            <button id="crash-T4.4" class="deactivated" onclick="scheduleElement(this)"><div class="statusOff"></div></button>
+        </div>
     </div>
-    Snare
-    <div id="snare">
-        <button name="first" id="snare-T1.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T1.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T1.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T1.4" class="deactivated" onclick="toggleElement(this)"></button>
 
-        <button name="first" id="snare-T2.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T2.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T2.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="snare-T2.4" class="deactivated" onclick="toggleElement(this)"></button>
+    <div id="util-buttons">
+        <button onclick="play()">Play</button>
+        <button onclick="pause()">Pause</button>
+        <button onclick="stop()">Stop</button>
+
+        <button onclick="increaseBpm()">+</button> BPM: <input id="actualBpm" type="number" value="70" min="1" max="400" onchange="updateBpm(this)" />
+        <button onclick="decreaseBpm()">-</button>
     </div>
-
-    Hi-Hat
-    <div id="hihat">
-        <button name="first" id="hihat-T1.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T1.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T1.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T1.4" class="deactivated" onclick="toggleElement(this)"></button>
-
-        <button name="first" id="hihat-T2.1" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T2.2" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T2.3" class="deactivated" onclick="toggleElement(this)"></button>
-        <button id="hihat-T2.4" class="deactivated" onclick="toggleElement(this)"></button>
-    </div>
-</div>
-
-<div id="util-buttons">
-    <button onclick="play()">Play</button>
-    <button onclick="pause()">Pause</button>
-    <button onclick="stop()">Stop</button>
-
-    <button onclick="increaseBpm()">+</button>
-    <label>BPM: </label><span id="actualBpm">60</span>
-    <button onclick="decreaseBpm()">-</button>
-</div>
 
 
 </body>

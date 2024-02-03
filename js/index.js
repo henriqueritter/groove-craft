@@ -5,21 +5,10 @@ var intervalId = 1;
 var isPlaying = false;
 var isPaused = false;
 
-const tempoQuantity = 2;
-const tempoMeasure = 4;
-
 var actualTempo = 1;
 var actualTempoMeasure = 0;
 
-const tempoInCompass = `T${actualTempo}.${actualTempoMeasure}`;
-
-const toggledItems = {}
-
-//este só vai servir para o metronomo mesmo
-const playItems = [
-    { name: "kick", isEveryBeat: false },
-    { name: "beat", isEveryBeat: true },
-];
+const elements = ["beat", "kick", "snare", "hithat"];
 
 const playedElements = {
     //"beat"
@@ -86,23 +75,18 @@ function decreaseBpm() {
 
 
 function playScheduledElement(element, tempo) {
-
-    if (playedElements[element]) {
-        toggleItemClassAtTempo(element, playedElements[element], false);
-        if (element !== "beat") {
-            const audio = new Audio(`assets/${element}.wav`);
-            audio.load();
-            audio.play();
-        }
+    if (element !== "beat") {
+        const audio = new Audio(`assets/${element}.wav`);
+        audio.load();
+        audio.play();
     }
-    console.log(element, tempo);
+
     toggleItemClassAtTempo(element, tempo, true);
 
     playedElements[element] = tempo;
 }
 
 function toggleItemClassAtTempo(item, tempo, isActivated) {
-    console.log(item);
     if (isActivated) {
         if (lastPlayedTempo) document.getElementById(`${item}-${lastPlayedTempo}`).className = "deactivated";
         document.getElementById(`${item}-${tempo}`).className = "activated";
@@ -113,22 +97,29 @@ function toggleItemClassAtTempo(item, tempo, isActivated) {
 }
 
 //-----------
-function toggleElement(element) {
-    const splitedElement = element.id.split("-");
+function scheduleElement(element) {
+    const splitedElementId = element.id.split("-");
 
-    const itemIndex = scheduledBeats[splitedElement[1]].indexOf(splitedElement[0]);
+    const itemIndex = scheduledBeats[splitedElementId[1]].indexOf(splitedElementId[0]);
 
     if (itemIndex > -1) {
-        console.log(itemIndex);
-        scheduledBeats[splitedElement[1]].splice(itemIndex, 1);
-        toggleItemClassAtTempo(splitedElement[0], splitedElement[1], false);
+        //scheduledBeats[splitedElementId[1]].splice(itemIndex, 1);
+        //toggleItemClassAtTempo(splitedElementId[0], splitedElementId[1], false);
+        unscheduleElement(splitedElementId[0], splitedElementId[1], itemIndex);
+        document.getElementById(`${splitedElementId[0]}-${splitedElementId[1]}`).firstChild.className = "statusOff";
         return;
     }
 
-    scheduledBeats[splitedElement[1]].push(splitedElement[0]);
+    scheduledBeats[splitedElementId[1]].push(splitedElementId[0]);
 
-    toggleItemClassAtTempo(splitedElement[0], splitedElement[1], true);
+    /////toggleItemClassAtTempo(splitedElementId[0], splitedElementId[1], true);
+    document.getElementById(`${splitedElementId[0]}-${splitedElementId[1]}`).firstChild.className = "statusOn";
     return;
+}
+
+function unscheduleElement(elementId, elementTempo, scheduleIndex) {
+    scheduledBeats[elementTempo].splice(scheduleIndex, 1);
+    toggleItemClassAtTempo(elementId, elementTempo, false);
 }
 
 

@@ -1,23 +1,45 @@
 body {
     background-color: #3C3C3C;
     color: aliceblue;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    width: 100wh;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+}
+
+#title strong {
+    font-size: 3em;
 }
 
 #loop-pads {
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #4C4C4C;
-    min-width: 100wh;
-    min-height: calc(100vh*0.9);
+    width: fit-content;
+    min-height: fit-content;
 }
 
 button {
     background-color: #4C4C4C;
     height: 4em;
     width: 2em;
+    padding: 1em;
+    vertical-align: middle;
+    position: relative;
+    border-radius: 10%;
 }
 
-#util-buttons button {
-    width: 4em;
-    border-radius: 25%;
+#loop-pads button {
+    border: none;
+    height: 5em;
+    width: 3em;
+    margin-right: 0.25em;
 }
 
 .activated {
@@ -29,13 +51,97 @@ button {
 }
 
 #kick .activated {
-    background-color: #1000c0;
+    background-color: #399f2f;
 }
 
 #kick .deactivated {
-    background-color: #4b1bdb;
+    background-color: #34912b;
+}
+
+#snare .activated {
+    background-color: #3383bd;
+}
+
+#snare .deactivated {
+    background-color: #245f8a;
+}
+
+#clap .activated {
+    background-color: #9c32d1;
+}
+
+#clap .deactivated {
+    background-color: #67218a;
+}
+
+#closedHihat .activated {
+    background-color: #d16438;
+}
+
+#closedHihat .deactivated {
+    background-color: #823d22;
+}
+
+#openHihat .activated {
+    background-color: #c93222;
+}
+
+#openHihat .deactivated {
+    background-color: #912317;
+}
+
+#crash .activated {
+    background-color: #28b87a;
+}
+
+#crash .deactivated {
+    background-color: #166342;
 }
 
 button[name="first"] {
-    opacity: 60%;
+    border: none;
+    mix-blend-mode: hard-light;
+}
+
+.statusOn {
+    position: absolute;
+    background-color: #fff330;
+    border: none;
+    width: auto;
+    border-top-right-radius: 150%;
+    border-top-left-radius: 150%;
+    height: 0.75em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s;
+}
+
+.statusOff {
+    position: absolute;
+    background-color: #736f2d;
+    border: none;
+    width: auto;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    height: 0.25em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: 0.2s;
+}
+
+#util-buttons {
+    width: 100wh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#util-buttons button {
+    text-align: center;
+    height: min-content;
+    width: fit-content;
+    margin: 0.5em;
+    text-decoration: none;
 }
