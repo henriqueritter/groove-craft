@@ -48,6 +48,18 @@ footer svg {
     margin-left: 1em;
 }
 
+footer a {
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: #d5d5d5;
+    transition: 0.2s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
 #project-info {
     flex: 1;
     width: auto;
