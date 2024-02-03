@@ -11,10 +11,29 @@ body {
     align-items: center;
 }
 
+header {
+    background-color: #333;
+    width: 100wh;
+    text-align: center;
+    justify-content: center;
+}
+
+header img {
+    width: 2.5em;
+    height: 2.5em;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    border: solid 0.1em;
+}
+
+header strong {
+    font-size: 3em;
+}
+
 footer {
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 0.5em;
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -50,17 +69,6 @@ footer svg {
     font-size: 1.05em;
     color: #fff;
     transition: 0.2s;
-}
-
-#title {
-    width: 100wh;
-    flex: 1;
-    text-align: center;
-    justify-content: center;
-}
-
-#title strong {
-    font-size: 3em;
 }
 
 #loop-pads {

@@ -1,62 +1,29 @@
-const defaultBpm = 60;
-const defaultTime = 1000;
+function iterateOverTempo() {
+    actualTempoMeasure++;
 
-const tempoQuantity = 4;
-const tempoMeasure = 4;
+    if (actualTempoMeasure > tempoMeasure) {
+        actualTempo++;
+        actualTempoMeasure = 1;
+    }
 
-function parseBpmToMilliseconds(bpm) {
-    return Math.floor((defaultTime / bpm) * defaultBpm);
+    if (actualTempo > tempoQuantity) {
+        actualTempo = 1;
+    }
+
+    return `T${actualTempo}.${actualTempoMeasure}`; //T1.1
 }
 
-function play() {
-    if (isPlaying) return;
+function playAudioOfElement(elementName) {
+    const audio = new Audio(`assets/${elementName}.wav`);
+    audio.load();
+    audio.play();
+}
 
-    isPlaying = true;
-    isPaused = false;
-
-    console.info("Lets Rick n Roll!");
-
-    intervalId = setInterval(() => {
-        const tempo = iterateOverTempo();
-
-        scheduledBeats[tempo].forEach(scheduledItem => {
-            playScheduledElement(scheduledItem, tempo);
-        });
-
-        if (lastPlayedTempo) {
-            scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
-                toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
-            });
+function initializeScheduledBeats() {
+    for (let i = 0; i < tempoQuantity; i++) {
+        for (let j = 0; j < tempoMeasure; j++) {
+            const tempo = iterateOverTempo();
+            if (!scheduledBeats[tempo]) scheduledBeats[tempo] = ["beat"];
         }
-
-        lastPlayedTempo = tempo;
-    }, bpmInMilliseconds / tempoMeasure);
-}
-
-function pause() {
-    if (!isPlaying) return;
-    isPlaying = false;
-    isPaused = true;
-
-    console.info("Pq parou? parou pq?");
-    clearInterval(intervalId);
-}
-
-function stop() {
-    if ((isPlaying = true) && (isPaused = false)) return;
-
-    isPlaying = false;
-
-    actualTempo = 1;
-    actualTempoMeasure = 0;
-
-    console.info("Pq parou? parou pq?");
-    clearInterval(intervalId);
-
-
-    if (lastPlayedTempo) {
-        scheduledBeats[lastPlayedTempo].forEach(alreadyPlayedBeat => {
-            toggleItemClassAtTempo(alreadyPlayedBeat, lastPlayedTempo, false);
-        });
     }
 }
